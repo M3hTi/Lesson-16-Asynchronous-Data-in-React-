@@ -68,7 +68,7 @@ function App() {
   React.useEffect(() => {
     getAsyncProduccts().then(response => {
       setItems(response.data.result)
-    })
+    },[])
     .catch(error => {
       console.log('Error:', error)
     })
