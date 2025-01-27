@@ -63,22 +63,23 @@ function getAsyncProduccts() {
 function App() {
 
   const [items, setItems] = React.useState([])
-
+  const [isLoading, setIsLoading] = React.useState(true)
 
   React.useEffect(() => {
-    getAsyncProduccts().then(response => {
-      setItems(response.data.result)
-    },[])
-    .catch(error => {
-      console.log('Error:', error)
-    })
-  },)
-
-
+    getAsyncProduccts()
+      .then(response => {
+        setItems(response.data.result)
+        setIsLoading(false)
+      })
+      .catch(error => {
+        console.log('Error:', error)
+        setIsLoading(false)
+      })
+  }, [])
 
   return (
     <>
-      <List items={items} />
+      {isLoading ? <p>Loading Products....</p> : <List items={items} />}
     </>
   )
 }
