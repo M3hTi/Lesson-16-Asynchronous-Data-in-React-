@@ -79,7 +79,7 @@ function App() {
 
   return (
     <>
-      {isLoading ? <p>Loading Products....</p> : <List items={items} />}
+      {isLoading ? <Loader /> : <List items={items} />}
     </>
   )
 }
@@ -99,6 +99,15 @@ function List({items}) {
         )
       })}
     </ul>
+  )
+}
+
+
+function Loader() {
+  return(
+    <div className='loader-container'>
+      <div className='loader'></div>
+    </div>
   )
 }
 
